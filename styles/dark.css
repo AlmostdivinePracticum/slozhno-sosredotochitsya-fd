@@ -12,5 +12,54 @@
 }
 
 .theme-dark .page {
-  /* Вам также нужно будет написать ряд подобных селекторов */
+  --page-background-image: url(/images/cover-image-dark.png);
+  --accent-color: #ff0070;
+  --font-ibm: 'IBM Plex Mono', sans-serif;
+  --header-buttons-color: #ff0070;
+  --header-buttons-color-alpha: #ff007066;
+  --header-decor-color: #ff0070;
+  --main-title-color: #db00ff;
+  --main-title-weight: 700;
+  --header-text-color: #000028;
+  --header-text-weight: 700;
+  --section-title-color: #ff0070;
+  --section-title-background: transparent;
+  --section-title-weight: 700;
+  --block-title-color: #000028;
+  --block-title-background: #ff0070;
+  --block-title-weight: 700;
+  --block-text-weight: 400;
+  --block-text-color: #f1b2ce;
+  --subblock-title-color: #000028;
+  --subblock-title-background: #ff0070;
+  --subblock-title-weight: 400;
+  --footer-title-shadow-color: #FF0070;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .page {
+    --page-background-image: url(/images/cover-image-dark.png);
+    --accent-color: #ff0070;
+    --font-ibm: 'IBM Plex Mono', sans-serif;
+    --header-buttons-color: #ff0070;
+    --header-buttons-color-alpha: #ff007066;
+    --header-decor-color: #ff0070;
+    --main-title-color: #db00ff;
+    --main-title-weight: 700;
+    --header-text-color: #000028;
+    --header-text-weight: 700;
+    --section-title-color: #ff0070;
+    --section-title-background: transparent;
+    --section-title-weight: 700;
+    --block-title-color: #000028;
+    --block-title-background: #ff0070;
+    --block-title-weight: 700;
+    --block-text-weight: 400;
+    --block-text-color: #f1b2ce;
+    --subblock-title-color: #000028;
+    --subblock-title-background: #ff0070;
+    --subblock-title-weight: 400;
+  --footer-title-shadow-color: #FF0070;
+  }
 }
