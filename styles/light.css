@@ -33,7 +33,7 @@
   --subblock-title-color: #353430;
   --subblock-title-background: #ff8dcb;
   --subblock-title-weight: 400;
-  --footer-title-shadow-color: #FF0070;
+  --footer-title-shadow-color: #ff0070;
 
   .rec {
     display: none;
@@ -41,7 +41,6 @@
 }
 
 @media (prefers-color-scheme: light) {
-
   .page {
     --page-background-image: url(/images/cover-image-light.png);
     --accent-color: #ff8dcb;
@@ -64,7 +63,7 @@
     --subblock-title-color: #353430;
     --subblock-title-background: #ff8dcb;
     --subblock-title-weight: 400;
-    --footer-title-shadow-color: #FF0070;
+    --footer-title-shadow-color: #ff0070;
 
     .rec {
       display: none;

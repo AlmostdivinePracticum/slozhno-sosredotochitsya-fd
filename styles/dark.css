@@ -33,11 +33,10 @@
   --subblock-title-color: #000028;
   --subblock-title-background: #ff0070;
   --subblock-title-weight: 400;
-  --footer-title-shadow-color: #FF0070;
+  --footer-title-shadow-color: #ff0070;
 }
 
 @media (prefers-color-scheme: dark) {
-
   .page {
     --page-background-image: url(/images/cover-image-dark.png);
     --accent-color: #ff0070;
@@ -60,6 +59,6 @@
     --subblock-title-color: #000028;
     --subblock-title-background: #ff0070;
     --subblock-title-weight: 400;
-  --footer-title-shadow-color: #FF0070;
+    --footer-title-shadow-color: #ff0070;
   }
 }
