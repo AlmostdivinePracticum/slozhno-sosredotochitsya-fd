@@ -1,5 +1,6 @@
 .page {
   position: relative;
+  background-color: var(--page-background-color);
   background-image: var(--page-background-image);
   background-size: cover;
   background-position: center center;
@@ -9,9 +10,8 @@
 
 .rec {
   position: absolute;
-  padding-right: 19px;
   font-family: var(--font-ibm);
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   font-size: 18px;
   color: var(--accent-color);
 }
@@ -30,24 +30,30 @@
 }
 
 .header {
-  min-block-size: 100vh;
+  position: relative;
+  block-size: 100vh;
 }
 
-.header__decor,
-.footer__decor {
-  position: absolute;
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before {
+  display: block;
+  position: absolute; /* позиция указана для левого/правого эл-та в зависимости от разрешения */
   block-size: 25px;
   inline-size: 25px;
-}
-
-.header__decor-right,
-.footer__decor-right {
+  content: '';
   border-inline-end: 1px solid var(--header-decor-color);
   border-block-start: 1px solid var(--header-decor-color);
 }
 
-.header__decor-left,
-.footer__decor-left {
+.decorated-zone::after {
+  display: block;
+  position: absolute; /* позиция указана для левого/правого эл-та в зависимости от разрешения */
+  block-size: 25px;
+  inline-size: 25px;
+  content: '';
   border-inline-start: 1px solid var(--header-decor-color);
   border-block-end: 1px solid var(--header-decor-color);
 }
@@ -57,7 +63,7 @@
   block-size: 26px;
   background-color: transparent;
   font-family: var(--font-ibm);
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
   font-size: 18px;
   letter-spacing: 0;
   text-align: center;
@@ -86,7 +92,7 @@
 .header__title {
   color: var(--main-title-color);
   font-family: var(--font-ibm);
-  font-weight: var(--main-title-weight);
+  font-weight: var(--font-weight-bold);
   text-shadow: 4px 4px 0 var(--accent-color);
 }
 
@@ -97,14 +103,14 @@
   color: var(--header-text-color);
   font-family: var(--font-ibm);
   font-style: normal;
-  font-weight: var(--header-text-weight);
+  font-weight: var(--font-weight-bold);
   font-size: 18px;
-  line-height: 23px;
+  line-height: 1.28;
 }
 
 .footer {
   position: relative;
-  min-block-size: 100vh;
+  block-size: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,13 +119,13 @@
 .footer__title {
   color: var(--main-title-color);
   font-family: var(--font-ibm);
-  font-weight: var(--main-title-weight);
+  font-weight: var(--font-weight-bold);
   text-shadow: 2px 2px 0 var(--footer-title-shadow-color);
 }
 
 .section__title {
   font-family: var(--font-ibm);
-  font-weight: var(--section-title-weight);
+  font-weight: var(--font-weight-normal);
   color: var(--section-title-color);
 }
 
@@ -128,14 +134,17 @@
   background-color: var(--block-title-background);
   font-family: var(--font-ibm);
   font-style: normal;
-  font-weight: var(--block-title-weight);
+  font-weight: var(--font-weight-bold);
   align-self: start;
 }
 
-.block__text,
-.subblock__text {
+.block__title-light {
+  font-weight: var(--font-weight-normal);
+}
+
+.block__text {
   font-family: var(--font-ibm);
-  font-weight: var(--block-text-weight);
+  font-weight: var(--font-weight-normal);
   color: var(--block-text-color);
 }
 
@@ -145,49 +154,40 @@
 }
 
 .block__link:hover {
-  text-decoration: underline;
+  border-block-end: 1px solid currentColor;
 }
 
 .block__link:focus-visible {
   outline: 1px solid var(--block-text-color);
 }
 
-.subblock__title {
-  font-family: var(--font-ibm);
-  font-style: normal;
-  font-weight: var(--subblock-title-weight);
-  color: var(--subblock-title-color);
-  background-color: var(--accent-color);
-}
-
 .picture {
   display: block;
   object-fit: cover;
+  object-position: center top;
   width: 100%;
   height: 100%;
 }
 
 /* Resolution-specific parameters */
 
-@media only screen and (max-width: 767px) {
+@media (width < 768px) {
   .rec {
     top: 3px;
-    right: 18px;
+    right: 37px;
   }
 
   .header {
-    position: relative;
     padding: 75px 10px 66px;
+    min-block-size: 668px;
   }
 
-  .header__decor-right,
-  .footer__decor-right {
+  .decorated-zone::before {
     top: 10px;
     right: 10px;
   }
 
-  .header__decor-left,
-  .footer__decor-left {
+  .decorated-zone::after {
     bottom: 10px;
     left: 10px;
   }
@@ -205,7 +205,7 @@
 
   .header__title {
     margin-block-start: 65px;
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
     line-height: 80%;
     letter-spacing: -3px;
   }
@@ -215,7 +215,7 @@
   }
 
   .footer__title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
     line-height: 81%;
   }
 
@@ -246,15 +246,14 @@
     line-height: 23.4px;
   }
 
-  .block,
-  .subblock {
+  .block {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 10px;
   }
 
-  .block:has(.subblock) {
+  .block.block-inner {
     gap: 20px;
   }
 
@@ -263,13 +262,12 @@
     line-height: 23px;
   }
 
-  .block__text,
-  .subblock__text {
+  .block__text {
     font-size: 18px;
     line-height: 23.4px;
   }
 
-  .subblock__title {
+  .block__title-light {
     font-size: 18px;
     line-height: 23px;
   }
@@ -286,27 +284,29 @@
     object-fit: cover;
     width: 100%;
   }
+
+  .footer {
+    min-block-size: 668px;
+  }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media (width >= 768px) {
   .rec {
     top: 13px;
-    right: 28px;
+    right: 47px;
   }
 
   .header {
-    position: relative;
     padding: 192px 20px 183px 0;
+    min-block-size: 1024px;
   }
 
-  .header__decor-right,
-  .footer__decor-right {
+  .decorated-zone::before {
     top: 20px;
     right: 20px;
   }
 
-  .header__decor-left,
-  .footer__decor-left {
+  .decorated-zone::after {
     bottom: 20px;
     left: 20px;
   }
@@ -365,20 +365,19 @@
     max-inline-size: 30vw;
   }
 
-  .section.section-two-columns-md {
+  .section.section-flow {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
   }
 
-  .block,
-  .subblock {
+  .block {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 10px;
   }
 
-  .block:has(.subblock) {
+  .block.block-inner {
     gap: 20px;
   }
 
@@ -387,13 +386,12 @@
     line-height: 23px;
   }
 
-  .block__text,
-  .subblock__text {
+  .block__text {
     font-size: 18px;
     line-height: 23.4px;
   }
 
-  .subblock__title {
+  .block__title-light {
     font-size: 18px;
     line-height: 23px;
   }
@@ -403,6 +401,7 @@
   }
 
   .block__pictures {
+    list-style: none;
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(3, 1fr);
@@ -411,6 +410,10 @@
       'picture-1 picture-1 picture-2'
       'picture-3 picture-4 picture-2'
       'picture-3 picture-5 picture-5';
+  }
+  .picture__container {
+    padding: 0;
+    margin: 0;
   }
 
   .picture__container-1 {
@@ -437,27 +440,29 @@
     grid-area: picture-5;
     min-block-size: 318px;
   }
+
+  .footer {
+    min-block-size: 1024px;
+  }
 }
 
-@media only screen and (min-width: 1024px) {
+@media (width >= 1024px) {
   .rec {
     top: 13px;
-    right: 28px;
+    right: 47px;
   }
 
   .header {
-    position: relative;
     padding: 20px 20px 134px 0;
+    min-block-size: 768px;
   }
 
-  .header__decor-right,
-  .footer__decor-right {
+  .decorated-zone::before {
     top: 20px;
     right: 20px;
   }
 
-  .header__decor-left,
-  .footer__decor-left {
+ .decorated-zone::after {
     bottom: 20px;
     left: 20px;
   }
@@ -517,20 +522,19 @@
     max-inline-size: 30vw;
   }
 
-  .section.section-two-columns-md {
+  .section.section-flow {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto;
   }
 
-  .section__data.section__data-three-columns-lg {
+  .section__data.section__data-flow {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     gap: 20px;
   }
 
-  .block,
-  .subblock {
+  .block {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -538,7 +542,7 @@
     align-self: baseline;
   }
 
-  .block:has(.subblock) {
+  .block.block-inner {
     gap: 20px;
   }
 
@@ -547,15 +551,9 @@
     line-height: 23px;
   }
 
-  .block__text,
-  .subblock__text {
+  .block__text {
     font-size: 18px;
     line-height: 23.4px;
-  }
-
-  .subblock__title {
-    font-size: 18px;
-    line-height: 23px;
   }
 
   .block-pictures {
@@ -596,5 +594,9 @@
   .picture__container-5 {
     grid-area: picture-5;
     min-block-size: 433px;
+  }
+
+  .footer {
+    min-block-size: 768px;
   }
 }
